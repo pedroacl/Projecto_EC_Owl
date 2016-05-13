@@ -11,23 +11,14 @@ Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 Ontology: <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto>
 
 
-ObjectProperty: temAntecedente
+ObjectProperty: eJustificaçaoSuporte
 
-    
-ObjectProperty: temJustificacaoSuporte
-
-    SubPropertyOf: 
-        temJustificação
-    
     Characteristics: 
         Functional
     
-    Domain: 
-        NóIN
     
-    Range: 
-        JustificacaoSuporte
-    
+ObjectProperty: temAntecedente
+
     
 ObjectProperty: temJustificação
 
@@ -60,6 +51,9 @@ ObjectProperty: temListaIN
     SubPropertyOf: 
         temLista
     
+    Characteristics: 
+        Functional
+    
     Domain: 
         Justificação
     
@@ -71,6 +65,9 @@ ObjectProperty: temListaOUT
 
     SubPropertyOf: 
         temLista
+    
+    Characteristics: 
+        Functional
     
     Domain: 
         Justificação
@@ -114,9 +111,6 @@ ObjectProperty: temNóOUT
     
 Class: JustificacaoSuporte
 
-    EquivalentTo: 
-        temJustificacaoSuporte exactly 1 JustificacaoSuporte
-    
     SubClassOf: 
         JustificaçãoValida
     
@@ -165,6 +159,10 @@ Class: Lista
     
 Class: ListaIN
 
+    EquivalentTo: 
+        Lista
+         and (temNóIN some Nó)
+    
     SubClassOf: 
         Lista
     
@@ -174,6 +172,10 @@ Class: ListaIN
     
 Class: ListaOUT
 
+    EquivalentTo: 
+        Lista
+         and (temNóOUT some Nó)
+    
     SubClassOf: 
         Lista
     
@@ -232,7 +234,24 @@ Individual: J1
      temListaOUT  LO_1
     
     
+Individual: J2_1
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temListaIN  LI_J2,
+     temListaOUT  LO_J2
+    
+    
 Individual: LI_1
+
+    Types: 
+        owl:Thing,
+        temNó exactly 0 owl:Thing
+    
+    
+Individual: LI_J2
 
     Types: 
         owl:Thing,
@@ -242,10 +261,19 @@ Individual: LI_1
 Individual: LO_1
 
     Types: 
-        owl:Thing
+        owl:Thing,
+        temNó exactly 0 owl:Thing
+    
+    
+Individual: LO_J2
+
+    Types: 
+        owl:Thing,
+        temNó only NóOUT
     
     Facts:  
-     temNóOUT  NóTeste
+     temNóOUT  N7,
+     temNóOUT  N8
     
     
 Individual: N1
@@ -257,18 +285,18 @@ Individual: N1
      temJustificação  J1
     
     
-Individual: NóOut
+Individual: N7
 
     Types: 
-        Nó,
         owl:Thing,
-        temJustificação exactly 0 owl:Thing
+        Nó
+         and (temJustificação exactly 0 owl:Thing)
     
     
-Individual: NóTeste
+Individual: N8
 
     Types: 
-        NóIN,
+        NóOUT,
         owl:Thing
     
     

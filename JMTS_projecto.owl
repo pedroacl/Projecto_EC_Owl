@@ -11,6 +11,24 @@ Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 Ontology: <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto>
 
 
+ObjectProperty: temAntecedente
+
+    
+ObjectProperty: temJustificacaoSuporte
+
+    SubPropertyOf: 
+        temJustificação
+    
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        NóIN
+    
+    Range: 
+        JustificacaoSuporte
+    
+    
 ObjectProperty: temJustificação
 
     Characteristics: 
@@ -92,6 +110,15 @@ ObjectProperty: temNóOUT
     
     Range: 
         Nó
+    
+    
+Class: JustificacaoSuporte
+
+    EquivalentTo: 
+        temJustificacaoSuporte exactly 1 JustificacaoSuporte
+    
+    SubClassOf: 
+        JustificaçãoValida
     
     
 Class: Justificação

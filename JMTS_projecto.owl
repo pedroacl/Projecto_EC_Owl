@@ -1,0 +1,250 @@
+Prefix: : <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+Ontology: <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto>
+
+
+ObjectProperty: temJustificação
+
+    Characteristics: 
+        InverseFunctional
+    
+    Domain: 
+        Nó
+    
+    Range: 
+        Justificação
+    
+    
+ObjectProperty: temLista
+
+    Characteristics: 
+        InverseFunctional,
+        Irreflexive,
+        Asymmetric
+    
+    Domain: 
+        Justificação
+    
+    Range: 
+        Lista
+    
+    
+ObjectProperty: temListaIN
+
+    SubPropertyOf: 
+        temLista
+    
+    Domain: 
+        Justificação
+    
+    Range: 
+        ListaIN or ListaVazia
+    
+    
+ObjectProperty: temListaOUT
+
+    SubPropertyOf: 
+        temLista
+    
+    Domain: 
+        Justificação
+    
+    Range: 
+        ListaOUT or ListaVazia
+    
+    
+ObjectProperty: temNó
+
+    Domain: 
+        Lista
+    
+    Range: 
+        Nó
+    
+    
+ObjectProperty: temNóIN
+
+    SubPropertyOf: 
+        temNó
+    
+    Domain: 
+        ListaIN
+    
+    Range: 
+        Nó
+    
+    
+ObjectProperty: temNóOUT
+
+    SubPropertyOf: 
+        temNó
+    
+    Domain: 
+        ListaOUT
+    
+    Range: 
+        Nó
+    
+    
+Class: Justificação
+
+    EquivalentTo: 
+        temListaIN exactly 1 (ListaIN or ListaVazia),
+        temListaOUT exactly 1 (ListaOUT or ListaVazia)
+    
+    
+Class: JustificaçãoInválida
+
+    EquivalentTo: 
+        Justificação
+         and ((temListaIN some (temNó some NóOUT)) or (temListaOUT some (temNó some NóIN)))
+    
+    SubClassOf: 
+        Justificação
+    
+    DisjointWith: 
+        JustificaçãoValida
+    
+    
+Class: JustificaçãoValida
+
+    EquivalentTo: 
+        Justificação
+         and ((temListaIN some 
+            (ListaVazia or (temNó only NóIN)))
+         and (temListaOUT some 
+            (ListaVazia or (temNó only NóOUT))))
+    
+    SubClassOf: 
+        Justificação
+    
+    DisjointWith: 
+        JustificaçãoInválida
+    
+    
+Class: Lista
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: ListaIN
+
+    SubClassOf: 
+        Lista
+    
+    DisjointWith: 
+        ListaOUT
+    
+    
+Class: ListaOUT
+
+    SubClassOf: 
+        Lista
+    
+    DisjointWith: 
+        ListaIN
+    
+    
+Class: ListaVazia
+
+    EquivalentTo: 
+        Lista
+         and (temNó exactly 0 owl:Thing)
+    
+    SubClassOf: 
+        Lista
+    
+    
+Class: Nó
+
+    
+Class: NóIN
+
+    EquivalentTo: 
+        temJustificação some JustificaçãoValida
+    
+    SubClassOf: 
+        Nó
+    
+    DisjointWith: 
+        NóOUT
+    
+    
+Class: NóOUT
+
+    EquivalentTo: 
+        (Nó
+         and (temJustificação exactly 0 Justificação)) or (temJustificação some JustificaçãoInválida)
+    
+    SubClassOf: 
+        Nó
+    
+    DisjointWith: 
+        NóIN
+    
+    
+Class: owl:Thing
+
+    
+Individual: J1
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temListaIN  LI_1,
+     temListaOUT  LO_1
+    
+    
+Individual: LI_1
+
+    Types: 
+        owl:Thing,
+        temNó exactly 0 owl:Thing
+    
+    
+Individual: LO_1
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temNóOUT  NóTeste
+    
+    
+Individual: N1
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temJustificação  J1
+    
+    
+Individual: NóOut
+
+    Types: 
+        Nó,
+        owl:Thing,
+        temJustificação exactly 0 owl:Thing
+    
+    
+Individual: NóTeste
+
+    Types: 
+        NóIN,
+        owl:Thing
+    
+    
+DisjointClasses: 
+    Justificação,Lista,Nó
+

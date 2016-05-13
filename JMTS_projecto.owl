@@ -14,21 +14,6 @@ Ontology: <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto>
 ObjectProperty: temAntecedente
 
     
-ObjectProperty: temJustificacaoSuporte
-
-    SubPropertyOf: 
-        temJustificação
-    
-    Characteristics: 
-        Functional
-    
-    Domain: 
-        NóIN
-    
-    Range: 
-        JustificacaoSuporte
-    
-    
 ObjectProperty: temJustificação
 
     Characteristics: 
@@ -60,6 +45,9 @@ ObjectProperty: temListaIN
     SubPropertyOf: 
         temLista
     
+    Characteristics: 
+        Functional
+    
     Domain: 
         Justificação
     
@@ -71,6 +59,9 @@ ObjectProperty: temListaOUT
 
     SubPropertyOf: 
         temLista
+    
+    Characteristics: 
+        Functional
     
     Domain: 
         Justificação
@@ -88,54 +79,24 @@ ObjectProperty: temNó
         Nó
     
     
-ObjectProperty: temNóIN
-
-    SubPropertyOf: 
-        temNó
-    
-    Domain: 
-        ListaIN
-    
-    Range: 
-        Nó
-    
-    
-ObjectProperty: temNóOUT
-
-    SubPropertyOf: 
-        temNó
-    
-    Domain: 
-        ListaOUT
-    
-    Range: 
-        Nó
-    
-    
 Class: JustificacaoSuporte
 
-    EquivalentTo: 
-        temJustificacaoSuporte exactly 1 JustificacaoSuporte
-    
     SubClassOf: 
         JustificaçãoValida
     
     
 Class: Justificação
 
-    EquivalentTo: 
-        temListaIN exactly 1 (ListaIN or ListaVazia),
-        temListaOUT exactly 1 (ListaOUT or ListaVazia)
-    
     
 Class: JustificaçãoInválida
 
     EquivalentTo: 
         Justificação
-         and ((temListaIN some (temNó some NóOUT)) or (temListaOUT some (temNó some NóIN)))
+         and (not (JustificaçãoValida))
     
     SubClassOf: 
-        Justificação
+        Justificação,
+        (temListaIN some (temNó some NóOUT)) or (temListaOUT some (temNó some NóIN))
     
     DisjointWith: 
         JustificaçãoValida
@@ -145,13 +106,12 @@ Class: JustificaçãoValida
 
     EquivalentTo: 
         Justificação
-         and ((temListaIN some 
-            (ListaVazia or (temNó only NóIN)))
-         and (temListaOUT some 
-            (ListaVazia or (temNó only NóOUT))))
+         and (not (JustificaçãoInválida))
     
     SubClassOf: 
-        Justificação
+        Justificação,
+        (temListaIN only (temNó only NóIN))
+         and (temListaOUT only (temNó only NóOUT))
     
     DisjointWith: 
         JustificaçãoInválida
@@ -222,53 +182,82 @@ Class: NóOUT
 Class: owl:Thing
 
     
-Individual: J1
+Individual: J1de1
 
     Types: 
         owl:Thing
     
     Facts:  
-     temListaIN  LI_1,
-     temListaOUT  LO_1
+     temListaIN  ListaIndeJ1,
+     temListaOUT  ListaOutdeJ1
     
     
-Individual: LI_1
+Individual: J2de1
 
     Types: 
+        owl:Thing
+    
+    Facts:  
+     temListaIN  ListaIndeJ2,
+     temListaOUT  ListaOutdeJ2
+    
+    
+Individual: ListaIndeJ1
+
+    Types: 
+        ListaIN,
         owl:Thing,
         temNó exactly 0 owl:Thing
     
     
-Individual: LO_1
+Individual: ListaIndeJ2
 
     Types: 
-        owl:Thing
-    
-    Facts:  
-     temNóOUT  NóTeste
-    
-    
-Individual: N1
-
-    Types: 
-        owl:Thing
-    
-    Facts:  
-     temJustificação  J1
-    
-    
-Individual: NóOut
-
-    Types: 
-        Nó,
+        ListaIN,
         owl:Thing,
-        temJustificação exactly 0 owl:Thing
+        temNó exactly 0 owl:Thing
     
     
-Individual: NóTeste
+Individual: ListaOutdeJ1
 
     Types: 
-        NóIN,
+        ListaOUT,
+        owl:Thing,
+        temNó exactly 0 owl:Thing
+    
+    
+Individual: ListaOutdeJ2
+
+    Types: 
+        ListaOUT,
+        owl:Thing
+    
+    
+Individual: Nó1
+
+    Facts:  
+     temJustificação  J1de1,
+     temJustificação  J2de1
+    
+    
+Individual: Nó2
+
+    Types: 
+        owl:Thing
+    
+    
+Individual: Nó7
+
+    Types: 
+        owl:Thing,
+        Nó
+         and (temJustificação exactly 0 owl:Thing)
+    
+    
+Individual: Nó8
+
+    Types: 
+        NóOUT,
         owl:Thing
     
     

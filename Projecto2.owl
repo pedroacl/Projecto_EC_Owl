@@ -22,6 +22,21 @@ ObjectProperty: eSuportadoPor
     Range: 
         JustificaçãoValida
     
+    InverseOf: 
+        suporta
+    
+    
+ObjectProperty: suporta
+
+    Domain: 
+        JustificaçãoValida
+    
+    Range: 
+        NóIN
+    
+    InverseOf: 
+        eSuportadoPor
+    
     
 ObjectProperty: temJustificação
 
@@ -158,6 +173,15 @@ Class: NóOUT
     
     DisjointWith: 
         NóIN
+    
+    
+Class: NóSuporte
+
+    EquivalentTo: 
+         inverse (temNó) some JustificaçãoSuporte
+    
+    SubClassOf: 
+        Nó
     
     
 Class: Premissa

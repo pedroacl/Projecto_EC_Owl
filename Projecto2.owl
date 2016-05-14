@@ -11,6 +11,18 @@ Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 Ontology: <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto>
 
 
+ObjectProperty: eSuportadoPor
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        NóIN
+    
+    Range: 
+        JustificaçãoValida
+    
+    
 ObjectProperty: temJustificação
 
     Characteristics: 
@@ -62,10 +74,15 @@ ObjectProperty: temNóOUT
         Nó
     
     
-Class: JustificacaoSuporte
+Class: Dedução
 
+    EquivalentTo: 
+        eSuportadoPor some 
+            ((temNóIN some NóIN)
+             and (temNóOUT exactly 0 owl:Thing))
+    
     SubClassOf: 
-        JustificaçãoValida
+        NóIN
     
     
 Class: Justificação
@@ -86,6 +103,15 @@ Class: JustificaçãoInválida
     
     DisjointWith: 
         JustificaçãoValida
+    
+    
+Class: JustificaçãoSuporte
+
+    EquivalentTo: 
+         inverse (eSuportadoPor) some NóIN
+    
+    SubClassOf: 
+        Justificação
     
     
 Class: JustificaçãoValida
@@ -131,6 +157,28 @@ Class: NóOUT
         Nó
     
     DisjointWith: 
+        NóIN
+    
+    
+Class: Premissa
+
+    EquivalentTo: 
+        temJustificação some 
+            ((temNóIN exactly 0 owl:Thing)
+             and (temNóOUT exactly 0 owl:Thing))
+    
+    SubClassOf: 
+        NóIN
+    
+    
+Class: Suposição
+
+    EquivalentTo: 
+        eSuportadoPor some 
+            ((temNóOUT some Nó)
+             and (temNóIN only NóIN))
+    
+    SubClassOf: 
         NóIN
     
     
@@ -257,6 +305,7 @@ Individual: N1
         owl:Thing
     
     Facts:  
+     eSuportadoPor  J1de1,
      temJustificação  J1de1,
      temJustificação  J2de1
     
@@ -267,6 +316,7 @@ Individual: N2
         owl:Thing
     
     Facts:  
+     eSuportadoPor  J1de2,
      temJustificação  J1de2
     
     
@@ -276,6 +326,7 @@ Individual: N3
         owl:Thing
     
     Facts:  
+     eSuportadoPor  J1de3,
      temJustificação  J1de3
     
     
@@ -285,7 +336,9 @@ Individual: N4
         owl:Thing
     
     Facts:  
-     temJustificação  J1de4
+     eSuportadoPor  J1de4,
+     temJustificação  J1de4,
+     temJustificação  J2de4
     
     
 Individual: N5
@@ -294,6 +347,7 @@ Individual: N5
         owl:Thing
     
     Facts:  
+     eSuportadoPor  J1de5,
      temJustificação  J1de5
     
     
@@ -303,6 +357,7 @@ Individual: N6
         owl:Thing
     
     Facts:  
+     eSuportadoPor  J1de6,
      temJustificação  J1de6
     
     

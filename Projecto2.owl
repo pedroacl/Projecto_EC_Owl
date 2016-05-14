@@ -1,0 +1,340 @@
+Prefix: : <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+Ontology: <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto>
+
+
+ObjectProperty: temJustificação
+
+    Characteristics: 
+        InverseFunctional
+    
+    Domain: 
+        Nó
+    
+    Range: 
+        Justificação
+    
+    
+ObjectProperty: temNó
+
+    Domain: 
+        Justificação
+    
+    Range: 
+        Nó
+    
+    
+ObjectProperty: temNóIN
+
+    SubPropertyOf: 
+        temNó
+    
+    DisjointWith: 
+        temNóOUT
+    
+    Domain: 
+        Justificação
+    
+    Range: 
+        Nó
+    
+    
+ObjectProperty: temNóOUT
+
+    SubPropertyOf: 
+        temNó
+    
+    DisjointWith: 
+        temNóIN
+    
+    Domain: 
+        Justificação
+    
+    Range: 
+        Nó
+    
+    
+Class: JustificacaoSuporte
+
+    SubClassOf: 
+        JustificaçãoValida
+    
+    
+Class: Justificação
+
+    DisjointWith: 
+        Nó
+    
+    
+Class: JustificaçãoInválida
+
+    EquivalentTo: 
+        Justificação
+         and (not (JustificaçãoValida))
+    
+    SubClassOf: 
+        Justificação
+         and ((temNóIN some NóOUT) or (temNóOUT some NóIN))
+    
+    DisjointWith: 
+        JustificaçãoValida
+    
+    
+Class: JustificaçãoValida
+
+    EquivalentTo: 
+        Justificação
+         and (not (JustificaçãoInválida))
+    
+    SubClassOf: 
+        Justificação
+         and (temNóIN only NóIN)
+         and (temNóOUT only NóOUT)
+    
+    DisjointWith: 
+        JustificaçãoInválida
+    
+    
+Class: Nó
+
+    DisjointWith: 
+        Justificação
+    
+    
+Class: NóIN
+
+    EquivalentTo: 
+        temJustificação some JustificaçãoValida
+    
+    SubClassOf: 
+        Nó
+    
+    DisjointWith: 
+        NóOUT
+    
+    
+Class: NóOUT
+
+    EquivalentTo: 
+        Nó
+         and (not (temJustificação some JustificaçãoValida))
+    
+    SubClassOf: 
+        Nó
+    
+    DisjointWith: 
+        NóIN
+    
+    
+Class: owl:Thing
+
+    
+Individual: J1de1
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 0 Nó,
+        temNóOUT exactly 0 Nó
+    
+    
+Individual: J1de2
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 0 Nó,
+        temNóOUT exactly 0 Nó
+    
+    
+Individual: J1de3
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 0 Nó,
+        temNóOUT exactly 0 Nó
+    
+    
+Individual: J1de4
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 2 Nó,
+        temNóOUT exactly 0 Nó
+    
+    Facts:  
+     temNóIN  N1,
+     temNóIN  N3
+    
+    
+Individual: J1de5
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 2 Nó,
+        temNóOUT exactly 0 Nó
+    
+    Facts:  
+     temNóIN  N2,
+     temNóIN  N4
+    
+    
+Individual: J1de6
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 0 Nó,
+        temNóOUT max 1 Nó
+    
+    Facts:  
+     temNóOUT  N7
+    
+    
+Individual: J1de8
+
+    Types: 
+        owl:Thing,
+        temNóOUT exactly 0 Nó
+    
+    Facts:  
+     temNóIN  N6,
+     temNóIN  N7
+    
+    
+Individual: J1de9
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 2 Nó,
+        temNóOUT exactly 0 Nó
+    
+    Facts:  
+     temNóIN  N5,
+     temNóIN  N8
+    
+    
+Individual: J2de1
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 0 Nó,
+        temNóOUT exactly 2 Nó
+    
+    Facts:  
+     temNóOUT  N7,
+     temNóOUT  N8
+    
+    
+Individual: J2de4
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temNóIN  N9,
+     temNóOUT  N8
+    
+    
+Individual: J2de8
+
+    Types: 
+        owl:Thing,
+        temNóIN exactly 0 Nó
+    
+    Facts:  
+     temNóOUT  N1
+    
+    
+Individual: N1
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temJustificação  J1de1,
+     temJustificação  J2de1
+    
+    
+Individual: N2
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temJustificação  J1de2
+    
+    
+Individual: N3
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temJustificação  J1de3
+    
+    
+Individual: N4
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temJustificação  J1de4
+    
+    
+Individual: N5
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temJustificação  J1de5
+    
+    
+Individual: N6
+
+    Types: 
+        owl:Thing
+    
+    Facts:  
+     temJustificação  J1de6
+    
+    
+Individual: N7
+
+    Types: 
+        owl:Thing,
+        Nó
+         and (temJustificação exactly 0 owl:Thing)
+    
+    
+Individual: N8
+
+    Types: 
+        owl:Thing,
+        temJustificação max 2 owl:Thing
+    
+    Facts:  
+     temJustificação  J1de8,
+     temJustificação  J2de8
+    
+    
+Individual: N9
+
+    Types: 
+        owl:Thing,
+        temJustificação max 1 owl:Thing
+    
+    Facts:  
+     temJustificação  J1de9
+    
+    
+DifferentIndividuals: 
+    J1de1,J1de2,J1de3,J1de4,J1de5,J1de6,J1de8,J1de9,J2de1,J2de4,J2de8,N1,N2,N3,N4,N5,N6,N7,N8,N9
+

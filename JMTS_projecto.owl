@@ -11,12 +11,6 @@ Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 Ontology: <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto>
 
 
-ObjectProperty: eJustificaçaoSuporte
-
-    Characteristics: 
-        Functional
-    
-    
 ObjectProperty: temAntecedente
 
     
@@ -85,30 +79,6 @@ ObjectProperty: temNó
         Nó
     
     
-ObjectProperty: temNóIN
-
-    SubPropertyOf: 
-        temNó
-    
-    Domain: 
-        ListaIN
-    
-    Range: 
-        Nó
-    
-    
-ObjectProperty: temNóOUT
-
-    SubPropertyOf: 
-        temNó
-    
-    Domain: 
-        ListaOUT
-    
-    Range: 
-        Nó
-    
-    
 Class: JustificacaoSuporte
 
     SubClassOf: 
@@ -117,19 +87,16 @@ Class: JustificacaoSuporte
     
 Class: Justificação
 
-    EquivalentTo: 
-        temListaIN exactly 1 (ListaIN or ListaVazia),
-        temListaOUT exactly 1 (ListaOUT or ListaVazia)
-    
     
 Class: JustificaçãoInválida
 
     EquivalentTo: 
         Justificação
-         and ((temListaIN some (temNó some NóOUT)) or (temListaOUT some (temNó some NóIN)))
+         and (not (JustificaçãoValida))
     
     SubClassOf: 
-        Justificação
+        Justificação,
+        (temListaIN some (temNó some NóOUT)) or (temListaOUT some (temNó some NóIN))
     
     DisjointWith: 
         JustificaçãoValida
@@ -139,13 +106,12 @@ Class: JustificaçãoValida
 
     EquivalentTo: 
         Justificação
-         and ((temListaIN some 
-            (ListaVazia or (temNó only NóIN)))
-         and (temListaOUT some 
-            (ListaVazia or (temNó only NóOUT))))
+         and (not (JustificaçãoInválida))
     
     SubClassOf: 
-        Justificação
+        Justificação,
+        (temListaIN only (temNó only NóIN))
+         and (temListaOUT only (temNó only NóOUT))
     
     DisjointWith: 
         JustificaçãoInválida
@@ -159,10 +125,6 @@ Class: Lista
     
 Class: ListaIN
 
-    EquivalentTo: 
-        Lista
-         and (temNóIN some Nó)
-    
     SubClassOf: 
         Lista
     
@@ -172,10 +134,6 @@ Class: ListaIN
     
 Class: ListaOUT
 
-    EquivalentTo: 
-        Lista
-         and (temNóOUT some Nó)
-    
     SubClassOf: 
         Lista
     
@@ -224,68 +182,71 @@ Class: NóOUT
 Class: owl:Thing
 
     
-Individual: J1
+Individual: J1de1
 
     Types: 
         owl:Thing
     
     Facts:  
-     temListaIN  LI_1,
-     temListaOUT  LO_1
+     temListaIN  ListaIndeJ1,
+     temListaOUT  ListaOutdeJ1
     
     
-Individual: J2_1
+Individual: J2de1
 
     Types: 
         owl:Thing
     
     Facts:  
-     temListaIN  LI_J2,
-     temListaOUT  LO_J2
+     temListaIN  ListaIndeJ2,
+     temListaOUT  ListaOutdeJ2
     
     
-Individual: LI_1
+Individual: ListaIndeJ1
 
     Types: 
+        ListaIN,
         owl:Thing,
         temNó exactly 0 owl:Thing
     
     
-Individual: LI_J2
+Individual: ListaIndeJ2
 
     Types: 
+        ListaIN,
         owl:Thing,
         temNó exactly 0 owl:Thing
     
     
-Individual: LO_1
+Individual: ListaOutdeJ1
 
     Types: 
+        ListaOUT,
         owl:Thing,
         temNó exactly 0 owl:Thing
     
     
-Individual: LO_J2
+Individual: ListaOutdeJ2
 
     Types: 
-        owl:Thing,
-        temNó only NóOUT
+        ListaOUT,
+        owl:Thing
     
+    
+Individual: Nó1
+
     Facts:  
-     temNóOUT  N7,
-     temNóOUT  N8
+     temJustificação  J1de1,
+     temJustificação  J2de1
     
     
-Individual: N1
+Individual: Nó2
 
     Types: 
         owl:Thing
     
-    Facts:  
-     temJustificação  J1
     
-    
-Individual: N7
+Individual: Nó7
 
     Types: 
         owl:Thing,
@@ -293,7 +254,7 @@ Individual: N7
          and (temJustificação exactly 0 owl:Thing)
     
     
-Individual: N8
+Individual: Nó8
 
     Types: 
         NóOUT,

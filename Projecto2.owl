@@ -11,6 +11,21 @@ Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 Ontology: <http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto>
 
 
+AnnotationProperty: <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
+
+    
+AnnotationProperty: rdfs:comment
+
+    
+AnnotationProperty: rdfs:label
+
+    
+Datatype: xsd:boolean
+
+    
+Datatype: xsd:string
+
+    
 ObjectProperty: eSuportadoPor
 
     Characteristics: 
@@ -416,4 +431,7 @@ Individual: N9
     
 DifferentIndividuals: 
     J1de1,J1de2,J1de3,J1de4,J1de5,J1de6,J1de8,J1de9,J2de1,J2de4,J2de8,N1,N2,N3,N4,N5,N6,N7,N8,N9
+
+Rule: 
+    eSuportadoPor(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>) -> <http://www.w3.org/2003/11/swrlb#first>(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>)
 

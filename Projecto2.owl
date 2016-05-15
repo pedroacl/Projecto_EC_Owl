@@ -104,6 +104,35 @@ ObjectProperty: temNóOUT
         Nó
     
     
+Class: Consequencia
+
+    EquivalentTo: 
+        Nó
+         and ( inverse (temNó) some ( inverse (temJustificação) some Nó))
+    
+    SubClassOf: 
+        Nó
+    
+    
+Class: ConsequenciaAcreditada
+
+    EquivalentTo: 
+        NóIN
+    
+    SubClassOf: 
+        ConsequenciaAfectada
+    
+    
+Class: ConsequenciaAfectada
+
+    EquivalentTo: 
+        Nó
+         and ( inverse (temNó) some ( inverse (temJustificação) some NóSuporte))
+    
+    SubClassOf: 
+        Consequencia
+    
+    
 Class: Dedução
 
     EquivalentTo: 
@@ -165,9 +194,20 @@ Class: Nó
         Justificação
     
     
+Class: NóAntecedente
+
+    EquivalentTo: 
+        Nó
+         and ( inverse (temNó) some ( inverse (temJustificação) some NóIN))
+    
+    SubClassOf: 
+        Nó
+    
+    
 Class: NóIN
 
     EquivalentTo: 
+        ConsequenciaAcreditada,
         temJustificação some JustificaçãoValida
     
     SubClassOf: 

@@ -43,6 +43,9 @@ ObjectProperty: temAntecedente
     SubPropertyChain: 
         eSuportadoPor o temNó
     
+    Characteristics: 
+        Transitive
+    
     Domain: 
         Nó
     
@@ -55,6 +58,9 @@ ObjectProperty: temConsequencia
     SubPropertyChain: 
          inverse (temNó) o  inverse (temJustificação)
     
+    Characteristics: 
+        Transitive
+    
     Domain: 
         Nó
     
@@ -64,6 +70,9 @@ ObjectProperty: temConsequencia
     
 ObjectProperty: temFundamento
 
+    SubPropertyChain: 
+        eSuportadoPor o temNó
+    
     SubPropertyChain: 
         temAntecedente o temAntecedente
     

@@ -53,6 +53,21 @@ ObjectProperty: temAntecedente
         Nó
     
     
+ObjectProperty: temAntepassado
+
+    SubPropertyChain: 
+        temJustificação o temNó
+    
+    SubPropertyChain: 
+        temNóSuporte o temNóSuporte
+    
+    Domain: 
+        Nó
+    
+    Range: 
+        Nó
+    
+    
 ObjectProperty: temConsequencia
 
     SubPropertyChain: 

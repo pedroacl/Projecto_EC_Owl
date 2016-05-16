@@ -37,20 +37,41 @@ ObjectProperty: eSuportadoPor
     Range: 
         JustificaçãoValida
     
-    InverseOf: 
-        suporta
     
-    
-ObjectProperty: suporta
+ObjectProperty: temAntecedente
 
+    SubPropertyChain: 
+        eSuportadoPor o temNó
+    
     Domain: 
-        JustificaçãoValida
+        Nó
     
     Range: 
-        NóIN
+        Nó
     
-    InverseOf: 
-        eSuportadoPor
+    
+ObjectProperty: temConsequencia
+
+    SubPropertyChain: 
+         inverse (temNó) o  inverse (temJustificação)
+    
+    Domain: 
+        Nó
+    
+    Range: 
+        Nó
+    
+    
+ObjectProperty: temFundamento
+
+    SubPropertyChain: 
+        temAntecedente o temAntecedente
+    
+    Domain: 
+        Nó
+    
+    Range: 
+        Nó
     
     
 ObjectProperty: temJustificação
@@ -104,16 +125,6 @@ ObjectProperty: temNóOUT
         Nó
     
     
-Class: Consequencia
-
-    EquivalentTo: 
-        Nó
-         and ( inverse (temNó) some ( inverse (temJustificação) some Nó))
-    
-    SubClassOf: 
-        Nó
-    
-    
 Class: ConsequenciaAcreditada
 
     EquivalentTo: 
@@ -125,13 +136,6 @@ Class: ConsequenciaAcreditada
     
 Class: ConsequenciaAfectada
 
-    EquivalentTo: 
-        Nó
-         and ( inverse (temNó) some ( inverse (temJustificação) some NóSuporte))
-    
-    SubClassOf: 
-        Consequencia
-    
     
 Class: Dedução
 
@@ -196,10 +200,6 @@ Class: Nó
     
 Class: NóAntecedente
 
-    EquivalentTo: 
-        Nó
-         and ( inverse (temNó) some ( inverse (temJustificação) some NóIN))
-    
     SubClassOf: 
         Nó
     
@@ -228,15 +228,6 @@ Class: NóOUT
     
     DisjointWith: 
         NóIN
-    
-    
-Class: NóSuporte
-
-    EquivalentTo: 
-         inverse (temNó) some JustificaçãoSuporte
-    
-    SubClassOf: 
-        Nó
     
     
 Class: Premissa
@@ -473,5 +464,5 @@ DifferentIndividuals:
     J1de1,J1de2,J1de3,J1de4,J1de5,J1de6,J1de8,J1de9,J2de1,J2de4,J2de8,N1,N2,N3,N4,N5,N6,N7,N8,N9
 
 Rule: 
-    eSuportadoPor(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>) -> <http://www.w3.org/2003/11/swrlb#first>(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>)
+    temJustificação(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>), JustificaçãoValida(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>) -> <http://www.w3.org/2003/11/swrlb#first>(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>)
 

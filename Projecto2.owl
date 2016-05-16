@@ -125,17 +125,17 @@ ObjectProperty: temNóOUT
         Nó
     
     
-Class: ConsequenciaAcreditada
+ObjectProperty: temNóSuporte
 
-    EquivalentTo: 
+    SubPropertyChain: 
+        temJustificação o temNó
+    
+    Domain: 
+        NóIN or NóOUT
+    
+    Range: 
         NóIN
     
-    SubClassOf: 
-        ConsequenciaAfectada
-    
-    
-Class: ConsequenciaAfectada
-
     
 Class: Dedução
 
@@ -198,16 +198,9 @@ Class: Nó
         Justificação
     
     
-Class: NóAntecedente
-
-    SubClassOf: 
-        Nó
-    
-    
 Class: NóIN
 
     EquivalentTo: 
-        ConsequenciaAcreditada,
         temJustificação some JustificaçãoValida
     
     SubClassOf: 
@@ -228,6 +221,18 @@ Class: NóOUT
     
     DisjointWith: 
         NóIN
+    
+    
+Class: NóSuporte
+
+    EquivalentTo: 
+        (((NóIN
+         and ( inverse (temNóOUT) some JustificaçãoInválida)) or (NóOUT
+         and ( inverse (temNóIN) some JustificaçãoInválida)))
+         and ( inverse (temNó) some ( inverse (temJustificação) some NóOUT))) or ( inverse (temAntecedente) some NóIN)
+    
+    SubClassOf: 
+        Nó
     
     
 Class: Premissa

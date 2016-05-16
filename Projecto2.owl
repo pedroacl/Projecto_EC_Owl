@@ -38,6 +38,9 @@ ObjectProperty: eSuportadoPor
         JustificaçãoValida
     
     
+ObjectProperty: owl:topObjectProperty
+
+    
 ObjectProperty: temAntecedente
 
     SubPropertyChain: 
@@ -56,9 +59,6 @@ ObjectProperty: temAntecedente
 ObjectProperty: temAntepassado
 
     SubPropertyChain: 
-        temJustificação o temNó
-    
-    SubPropertyChain: 
         temNóSuporte o temNóSuporte
     
     Domain: 
@@ -75,6 +75,18 @@ ObjectProperty: temConsequencia
     
     Characteristics: 
         Transitive
+    
+    Domain: 
+        Nó
+    
+    Range: 
+        Nó
+    
+    
+ObjectProperty: temConsequenciaAfectada
+
+    SubPropertyOf: 
+        owl:topObjectProperty
     
     Domain: 
         Nó
@@ -159,6 +171,27 @@ ObjectProperty: temNóSuporte
     
     Range: 
         NóSuporte
+    
+    
+ObjectProperty: temNóSuporte2
+
+    Domain: 
+        Nó
+    
+    Range: 
+        NóSuporte
+    
+    
+ObjectProperty: temRepercussões
+
+    SubPropertyChain: 
+        temConsequenciaAfectada o temConsequenciaAfectada
+    
+    Domain: 
+        Nó
+    
+    Range: 
+        Nó
     
     
 Class: Dedução
@@ -496,5 +529,11 @@ DifferentIndividuals:
     J1de1,J1de2,J1de3,J1de4,J1de5,J1de6,J1de8,J1de9,J2de1,J2de4,J2de8,N1,N2,N3,N4,N5,N6,N7,N8,N9
 
 Rule: 
-    temJustificação(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>), JustificaçãoValida(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>) -> <http://www.w3.org/2003/11/swrlb#first>(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>)
+    NóOUT(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#no>), temJustificação(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#no>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#just>), Justificação(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#just>), temNó(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#just>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#z>), NóSuporte(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#z>) -> temNóSuporte2(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#no>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#z>)
+
+Rule: 
+    NóIN(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>), eSuportadoPor(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>), Justificação(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>), temNó(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#z>), NóSuporte(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#z>) -> temNóSuporte2(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#z>)
+
+Rule: 
+    Nó(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>), temConsequencia(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>), temNóSuporte(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>) -> temConsequenciaAfectada(?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#x>, ?<http://www.semanticweb.org/jalb/ontologies/2016/4/JMTS_projecto#y>)
 

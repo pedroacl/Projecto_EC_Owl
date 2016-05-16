@@ -128,13 +128,13 @@ ObjectProperty: temNóOUT
 ObjectProperty: temNóSuporte
 
     SubPropertyChain: 
-        temJustificação o temNó
+        eSuportadoPor o temNó
     
     Domain: 
-        NóIN or NóOUT
+        Nó
     
     Range: 
-        NóIN
+        NóSuporte
     
     
 Class: Dedução
@@ -452,7 +452,9 @@ Individual: N8
     
     Facts:  
      temJustificação  J1de8,
-     temJustificação  J2de8
+     temJustificação  J2de8,
+     temNóSuporte  N1,
+     temNóSuporte  N7
     
     
 Individual: N9
@@ -462,7 +464,8 @@ Individual: N9
         temJustificação max 1 owl:Thing
     
     Facts:  
-     temJustificação  J1de9
+     temJustificação  J1de9,
+     temNóSuporte  N8
     
     
 DifferentIndividuals: 

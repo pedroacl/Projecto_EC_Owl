@@ -103,6 +103,9 @@ ObjectProperty: temConsequenciaAcreditada
     
 ObjectProperty: temConsequenciaAfectada
 
+    SubPropertyOf: 
+        temRepercussões
+    
     Domain: 
         Nó
     
@@ -449,7 +452,9 @@ Individual: J2de8
 Individual: N1
 
     Types: 
-        owl:Thing
+        owl:Thing,
+        eSuportadoPor exactly 1 owl:Thing,
+        temJustificação max 2 owl:Thing
     
     Facts:  
      eSuportadoPor  J1de1,
@@ -460,7 +465,8 @@ Individual: N1
 Individual: N2
 
     Types: 
-        owl:Thing
+        owl:Thing,
+        temJustificação exactly 1 Justificação
     
     Facts:  
      eSuportadoPor  J1de2,
@@ -470,7 +476,9 @@ Individual: N2
 Individual: N3
 
     Types: 
-        owl:Thing
+        owl:Thing,
+        temJustificação exactly 1 Justificação,
+        temNóSuporte2 exactly 0 owl:Thing
     
     Facts:  
      eSuportadoPor  J1de3,
@@ -480,7 +488,8 @@ Individual: N3
 Individual: N4
 
     Types: 
-        owl:Thing
+        owl:Thing,
+        temJustificação exactly 2 Justificação
     
     Facts:  
      eSuportadoPor  J1de4,
@@ -491,7 +500,8 @@ Individual: N4
 Individual: N5
 
     Types: 
-        owl:Thing
+        owl:Thing,
+        temJustificação exactly 1 Justificação
     
     Facts:  
      eSuportadoPor  J1de5,
@@ -501,7 +511,8 @@ Individual: N5
 Individual: N6
 
     Types: 
-        owl:Thing
+        owl:Thing,
+        temJustificação exactly 1 Justificação
     
     Facts:  
      eSuportadoPor  J1de6,

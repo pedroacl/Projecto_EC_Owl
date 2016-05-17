@@ -91,6 +91,9 @@ ObjectProperty: temConsequenciaAcreditada
     SubPropertyOf: 
         temRepercussoesAcreditadas
     
+    SubPropertyChain: 
+        temConsequenciaAfectada o eSuportadoPor o  inverse (temJustificação)
+    
     Domain: 
         Nó
     
@@ -100,12 +103,6 @@ ObjectProperty: temConsequenciaAcreditada
     
 ObjectProperty: temConsequenciaAfectada
 
-    SubPropertyOf: 
-        temRepercussões
-    
-    SubPropertyChain: 
-        temNóSuporte2 o temConsequencia
-    
     Domain: 
         Nó
     
